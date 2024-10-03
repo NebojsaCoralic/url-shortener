@@ -31,12 +31,14 @@
                 <td>{{ $url->expires_at }}</td>
                 <td>{{ $url->count }}</td>
                 <td>
-                    <a href="{{ route('urls.edit', $url->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('urls.destroy', $url->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
+                    @if(auth() -> user() -> is_admin || auth() -> user() -> id == $url->user_id)
+                        <a href="{{ route('urls.edit', $url->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('urls.destroy', $url->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

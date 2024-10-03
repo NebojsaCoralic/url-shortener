@@ -32,8 +32,11 @@ class UrlController extends Controller
         return redirect() -> route('urls.index');
     }
 
-    public function edit(Url $url): Renderable
+    public function edit(Url $url)
     {
+        if (!auth() -> user() -> is_admin && auth() -> user() -> id != $url -> user_id) {
+            return redirect() -> route('urls.index');
+        }
         return view('urls.edit', compact('url'));
     }
 

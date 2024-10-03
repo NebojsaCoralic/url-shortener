@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Url Sh',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => 'Url Shortener',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -294,7 +294,6 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Companies'],
         [
             'text' => 'Urls',
             'url' => 'urls',
@@ -304,6 +303,12 @@ return [
             'text' => 'Companies',
             'url' => 'companies',
             'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Users',
+            'url' => 'users',
+            'icon' => 'fas fa-fw fa-user',
+            'permission' => 'admin',
         ],
         ['header' => 'account_settings'],
         [
@@ -340,6 +345,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        \App\Filter\AdminFilter::class
     ],
 
     /*
