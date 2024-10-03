@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Create New User</h1>
-{{ var_dump($errors -> all()) }}
+
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
 
@@ -18,13 +18,10 @@
 
         <div class="form-group">
             <label for="is_admin">Admin</label>
-            <div class="form-group">
-                <label for="is_admin">Admin</label>
-                <select class="form-control" name="is_admin">
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </select>
-            </div>
+            <select class="form-control" name="is_admin">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
         </div>
 
         <div class="form-group">

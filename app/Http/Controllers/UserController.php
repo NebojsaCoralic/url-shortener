@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,9 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        (new User()) -> create($request -> validated());
+        $params = $request -> validated();
+        $params['password'] = Hash::make($params['password']);
+        (new User()) -> create($params);
 
         return redirect() -> route('users.index');
     }
@@ -43,7 +46,9 @@ class UserController extends Controller
 
         if(!$params['password'])
             unset($params['password']);
-
+        else
+            $params['password'] = Hash::make($params['password']);
+        $params['password'] =
         $user->update($params);
         return redirect() -> route('users.index');
     }

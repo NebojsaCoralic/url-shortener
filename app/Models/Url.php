@@ -29,6 +29,11 @@ class Url extends Model
 
     public static function getShortHash(): string
     {
-        return Str::random(8);
+        $hash = Str::random(8);
+
+        if(Url::where('short_url', $hash)->exists()) {
+            self::getShortHash();
+        }
+        return $hash;
     }
 }
