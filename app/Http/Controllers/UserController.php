@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +20,8 @@ class UserController extends Controller
 
     public function create(): Renderable
     {
-        return view('users.create');
+        $companies = Company::all();
+        return view('users.create', compact('companies'));
     }
 
     public function store(StoreUserRequest $request): RedirectResponse
@@ -31,7 +33,8 @@ class UserController extends Controller
 
     public function edit(User $user): Renderable
     {
-        return view('users.edit', compact('user'));
+        $companies = Company::all();
+        return view('users.edit', compact('user', 'companies'));
     }
 
     public function update(UpdateUserRequest $request, User $user): RedirectResponse

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Edit User</h1>
-{{ var_dump($errors -> all()) }}
+
     <form action="{{ route('users.update', $user) }}" method="POST">
         @csrf
         @method('PUT')
@@ -21,6 +21,15 @@
             <label for="is_admin">Admin</label>
             <select class="form-control" name="is_admin">
                 <option value="0" {{ $user -> is_admin ? '' : 'selected' }}>No</option><option value="1" {{ $user -> is_admin ? 'selected' : '' }}>Yes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="company_id">Company</label>
+            <select class="form-control" name="company_id">
+                @foreach($companies as $company)
+                    <option value="{{ $company -> id }}" @if($user -> company_id == $company -> id) selected @endif>{{ $company -> name }}</option>
+                @endforeach
             </select>
         </div>
 

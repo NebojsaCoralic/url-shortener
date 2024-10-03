@@ -18,7 +18,22 @@
 
         <div class="form-group">
             <label for="is_admin">Admin</label>
-            <input type="checkbox" name="is_admin" id="is_admin" value="0">
+            <div class="form-group">
+                <label for="is_admin">Admin</label>
+                <select class="form-control" name="is_admin">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="company_id">Company</label>
+            <select class="form-control" name="company_id">
+                @foreach($companies as $company)
+                    <option value="{{ $company -> id }}">{{ $company -> name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group">

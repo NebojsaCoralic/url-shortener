@@ -28,6 +28,7 @@ class UpdateUserRequest extends FormRequest
             'email' => 'required|string|email|max:255',
             'is_admin' => 'nullable|boolean',
             'password' => 'nullable|string|min:8',
+            'company_id' => 'required|exists:companies,id',
         ];
     }
 }

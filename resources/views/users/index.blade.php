@@ -17,6 +17,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Company</th>
             <th>Admin</th>
             <th>Actions</th>
         </tr>
@@ -27,6 +28,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->company->name ?? '' }}</td>
                 <td>{{ $user->is_admin ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>

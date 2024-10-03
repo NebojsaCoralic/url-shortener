@@ -20,17 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\UrlController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\UrlController::class, 'index'])->name('home');
 
 
-Route::resource('companies', CompanyController::class);
-Route::resource('urls', UrlController::class);
+    Route::resource('companies', CompanyController::class);
+    Route::resource('urls', UrlController::class);
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::resource('users', UserController::class);
+    Route::group(['middleware' => 'admin'], function () {
+        Route::resource('users', UserController::class);
+    });
 });
+
 
 
 Route::get('{hash}', [UrlController::class, 'redirect'])->name('urls.redirect');
