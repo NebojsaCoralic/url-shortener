@@ -296,9 +296,14 @@ return [
     'menu' => [
         ['header' => 'Companies'],
         [
+            'text' => 'Urls',
+            'url' => 'urls',
+            'icon' => 'fas fa-fw fa-link',
+        ],
+        [
             'text' => 'Companies',
             'url' => 'companies',
-            'icon' => 'fas fa-fw fa-company',
+            'icon' => 'fas fa-fw fa-building',
         ],
         ['header' => 'account_settings'],
         [

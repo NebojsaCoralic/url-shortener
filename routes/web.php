@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('companies', CompanyController::class);
+Route::resource('urls', UrlController::class);
+Route::get('{hash}', [UrlController::class, 'redirect'])->name('urls.redirect');
 
