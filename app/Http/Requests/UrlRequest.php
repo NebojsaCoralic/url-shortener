@@ -25,7 +25,6 @@ class UrlRequest extends FormRequest
     {
         return [
             'url' => 'required|url|max:2048',
-            'expires_at' => 'date',
         ];
     }
 }

@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('companies', CompanyController::class);
     Route::resource('urls', UrlController::class);
+    Route::post('urls/{url}/expire', [UrlController::class, 'extendExpiry'])->name('urls.extend-expiry');
 
     Route::group(['middleware' => 'admin'], function () {
         Route::resource('users', UserController::class);

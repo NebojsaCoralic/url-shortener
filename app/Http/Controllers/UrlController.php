@@ -25,6 +25,7 @@ class UrlController extends Controller
     {
         $params = $request -> validated();
         $params['short_url'] = Url::getShortHash();
+        $params['expires_at'] = now()->addDays(7);
         $params['user_id'] = auth() -> id();
 
         (new Url()) -> create($params);
@@ -56,12 +57,19 @@ class UrlController extends Controller
     {
         $url = Url::where('short_url', $hash) -> first();
 
-        if (!$url) {
+        if (!$url || $url -> is_expired) {
             return redirect() -> route('urls.index');
         }
 
         $url->count++;
         $url->save();
         return redirect($url->url);
+    }
+
+    public function extendExpiry(Url $url): RedirectResponse
+    {
+        $url -> expires_at = now()->addDays(7);
+        $url -> save();
+        return redirect() -> route('urls.index');
     }
 }

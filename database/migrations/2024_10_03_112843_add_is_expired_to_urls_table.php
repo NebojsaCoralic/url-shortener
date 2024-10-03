@@ -14,7 +14,7 @@ class AddIsExpiredToUrlsTable extends Migration
     public function up()
     {
         Schema::table('urls', function (Blueprint $table) {
-            //
+            $table->boolean('is_expired')->default(false)->after('expires_at');
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsExpiredToUrlsTable extends Migration
     public function down()
     {
         Schema::table('urls', function (Blueprint $table) {
-            //
+            $table->dropColumn('is_expired');
         });
     }
 }
