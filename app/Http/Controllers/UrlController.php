@@ -61,6 +61,20 @@ class UrlController extends Controller
             return redirect() -> route('urls.index');
         }
 
+        if($url->is_secure) {
+
+            if(!auth()->check()) {
+                return redirect() -> route('urls.index');
+            }
+
+            if(auth()->user()->company_id !== $url->user->company_id) {
+                return redirect() -> route('urls.index');
+            }
+
+//            LOGIKA ZA pracenje usera koji su posjetili url
+            $url->users()->attach(auth()->user()->id);
+        }
+
         $url->count++;
         $url->save();
         return redirect($url->url);

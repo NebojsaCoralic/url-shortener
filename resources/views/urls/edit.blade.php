@@ -14,7 +14,10 @@
 
         <div class="form-group">
             <label for="is_secure">Secure URL</label>
-            <input type="checkbox" name="is_secure" id="is_secure" value="1" {{ $url->is_secure ? 'checked' : '' }}>
+            <select name="is_secure" class="form-control">
+                <option value="0" @if($url->is_secure == false) selected @endif>No</option>
+                <option value="1" @if($url->is_secure == true) selected @endif>Yes</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Shortened URL</button>

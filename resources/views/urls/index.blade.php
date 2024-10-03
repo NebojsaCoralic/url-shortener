@@ -20,6 +20,7 @@
             <th>Expiration Date</th>
             <th>Expired</th>
             <th>Click Count</th>
+            <th>Is Secure</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -32,6 +33,7 @@
                 <td>{{ $url->expires_at }}</td>
                 <td>{{ $url -> is_expired ? 'Yes' : 'No' }}</td>
                 <td>{{ $url->count }}</td>
+                <td>{{ $url -> is_secure ? 'Yes' : 'No' }}</td>
                 <td>
                     @if(auth() -> user() -> is_admin || auth() -> user() -> id == $url->user_id)
                         <a href="{{ route('urls.edit', $url->id) }}" class="btn btn-warning">Edit</a>

@@ -13,7 +13,10 @@
 
         <div class="form-group">
             <label for="is_secure">Secure URL</label>
-            <input type="checkbox" name="is_secure" id="is_secure" value="1">
+            <select name="is_secure" class="form-control">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Create Shortened URL</button>

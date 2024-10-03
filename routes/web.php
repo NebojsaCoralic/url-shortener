@@ -35,7 +35,5 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-
-
 Route::get('{hash}', [UrlController::class, 'redirect'])->name('urls.redirect');
 
