@@ -25,6 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule -> command('urls:check-expiration-date') -> hourly();
+        $schedule -> command('urls:send-notification-email') -> hourly();
+
     }
 
     /**
